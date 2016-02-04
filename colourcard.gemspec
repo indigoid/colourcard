@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["john.slee@fairfaxmedia.com.au"]
 
   spec.summary       = %q{Generate random colour cards in PNG format}
-  spec.description   = %q{Generate random colour cards in PNG format}
+  spec.description   = %q{Generate random colour cards in PNG format. The default settings are ideal for desktop backgrounds on good modern laptops, ie. roughly 8:5 aspect}
   spec.homepage      = "https://github.com/indigoid/colourcard"
   spec.license       = "MIT"
 

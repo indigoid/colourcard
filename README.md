@@ -18,7 +18,7 @@ Generate random colour cards in PNG format
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/colourcard.
+Bug reports and pull requests are welcome on GitHub at https://github.com/indigoid/colourcard.
 
 ## License
 
