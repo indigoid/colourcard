@@ -1,6 +1,6 @@
 require "colourcard/version"
-require "colourcard/colour_patch"
-require "colourcard/colour_card"
+require "colourcard/patch"
+require "colourcard/card"
 require 'png'
 require 'thor'
 
