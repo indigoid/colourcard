@@ -1,6 +1,6 @@
 # Colourcard
 
-Generate random colour cards in PNG format
+Generate colour cards in PNG format, with colours specified in a file or chosen at random.
 
 ## Installation
 
@@ -10,11 +10,23 @@ Generate random colour cards in PNG format
 
     $ colourcard help generate
 
+The simplest invocation generates a random card:
+
     $ colourcard generate
 
-## Future ideas
+Colourcard now supports reading colours from a file, including (optionally) the alpha channel value. The file format is very simple, just one patch specified per line, starting at top left and proceeding to the bottom right, row by row.
 
-- allow reading the card colours from a stream or file
+The below Ruby code was used to generate the supplied sample input3x3.txt:
+
+    puts (0..8).map { |x| (0..2).map { |y| 16-(y*2) + x*(0xFF/(9+(y*2))) }.join(" ") }.join("\n")
+
+If there are insufficient rows in the input file to fill all of the patches on the colour card, the remainder will be filled with a dark grey.
+
+    $ colourcard generate --input input.txt
+
+As mentioned above, the input file can also specify the alpha channel value for each patch. The below Ruby code is similar to that above but emits an alpha value as well; this was used to generate the supplied sample input3x3a.txt:
+
+    puts (0..8).map { |x| (0..3).map { |y| 16-(y*2) + x*(0xFF/(9+(y*2))) }.join(" ") }.join("\n")
 
 ## Contributing
 

@@ -9,6 +9,7 @@ module ColourCard
             @patch_height = options[:patch_height] || 30
             background    = options[:background]   || PNG::Color.new(0,0,0,0xFF)
             @spacing      = options[:spacing]      || 2
+            @colours      = options[:colours]
             card_width    = (@patch_width * @across) + (@spacing * (@across+1))
             card_height   = (@patch_height * @down)  + (@spacing * (@down+1))
 
@@ -16,11 +17,12 @@ module ColourCard
             render
         end
         def render
-            (0..@across-1).each do |x|
-                (0..@down-1).each do |y|
+            (0..@down-1).reverse_each do |y|
+                (0..@across-1).each do |x|
                     patch = ColourCard::Patch.new({
                         :width  => @patch_width,
-                        :height => @patch_height
+                        :height => @patch_height,
+                        :colour => @colours ? @colours.shift : nil,
                     })
                     composite(
                         patch,
