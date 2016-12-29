@@ -42,5 +42,10 @@ module ColourCard
             png = PNG.new(colour_card)
             png.save(options[:output])
         end
+        
+        desc 'version', 'displays the version of Colourcard invoked'
+        def version
+          puts "colourcard #{Colourcard::VERSION}"
+        end
     end
 end
