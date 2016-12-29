@@ -1,15 +1,17 @@
 require 'png'
+require 'png/font'
 
 module ColourCard
     class ColourCard::Patch < PNG::Canvas
         def initialize(options = {})
             colour = options[:colour] || random_colour
+            desc   = options[:desc]   || nil
             @erase = options[:erase]  || colour
-            super(
-                options[:width] || 10,
-                options[:height] || 10,
-                colour
-            )
+            width  = options[:width]  || 10
+            height = options[:height] || 10
+            super(width, height, colour)
+            puts "(#{width/2},#{height/2}) using description: #{desc}"
+            annotate(desc,width/2,height/2,PNG::Font.default,:center) if desc
             border
         end
     private

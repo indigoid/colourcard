@@ -6,18 +6,17 @@ module ColourCard
             patches = ::File.readlines(filename)
             patches = patches.map(&:strip)
             patches = patches.keep_if { |x| x.match(/^[^#]/) }
-            patches = patches.map(&:split)
-            patches = patches.keep_if { |x| x.size == 3 || x.size == 4 }
             patches.each do |x|
-                r,g,b,a = x.map { |n| n.to_i }
-                a ||= 0xFF
-                self.push(PNG::Color.new(r,g,b,a))
+                rgba,desc = x.split(/\s*##\s*/)
+                r,g,b,a = rgba.split(/\s+/).map { |n| n.to_i(10) }
+                a ||= 255
+                self.push({ :colour => PNG::Color.new(r,g,b,a), :desc => desc})
             end
             self.pad(n_desired, pad_colour)
         end
-        def pad(n, colour = nil)
+        def pad(n, colour = nil, desc = nil)
             if self.size < n
-                (1 .. n-self.size).each { self.push(colour) }
+                (1 .. n-self.size).each { self.push({ :colour => colour, :desc => desc } ) }
             end
         end
     end

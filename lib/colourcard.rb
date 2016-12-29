@@ -28,7 +28,7 @@ module ColourCard
                 file_colours.load(
                     options[:input],
                     options[:across] * options[:down],
-                    PNG::Color.new(0xFF,0xFF,0xFF,0x10),
+                    PNG::Color.new(0xFF,0xFF,0xFF,0x7F),
                 )
             end
             colour_card = ColourCard::Card.new({

@@ -19,10 +19,18 @@ module ColourCard
         def render
             (0..@down-1).reverse_each do |y|
                 (0..@across-1).each do |x|
+                    colour = nil
+                    desc = nil
+                    if @colours
+                      c = @colours.shift
+                      colour = c[:colour] || nil
+                      desc   = c[:desc] || nil
+                    end
                     patch = ColourCard::Patch.new({
                         :width  => @patch_width,
                         :height => @patch_height,
-                        :colour => @colours ? @colours.shift : nil,
+                        :colour => colour,
+                        :desc   => desc
                     })
                     composite(
                         patch,
