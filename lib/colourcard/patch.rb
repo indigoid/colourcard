@@ -10,7 +10,6 @@ module ColourCard
             width  = options[:width]  || 10
             height = options[:height] || 10
             super(width, height, colour)
-            puts "(#{width/2},#{height/2}) using description: #{desc}"
             annotate(desc,width/2,height/2,PNG::Font.default,:center) if desc
             border
         end
